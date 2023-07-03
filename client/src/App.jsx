@@ -4,11 +4,15 @@ import {Chat} from "stream-chat-react"
 import cookies from "universal-cookie"
 import ChannelContainer from './Components/ChannelContainer'
 import ChannelListContainer from './Components/ChannelListContainer'
+import Auth from "./Components/Auth"
 import "./App.css"
 const apiKey = 'qhf9497y46m7'
 
 const client = StreamChat.getInstance(apiKey)
+const signup = false
 const App = () => {
+  if(signup === false) return <Auth />
+
   return (
     <div className="app__wrapper">
     <Chat client={client} theme="team light">
