@@ -1,26 +1,48 @@
 import React from 'react'
-import {StreamChat} from "stream-chat"
-import {Chat} from "stream-chat-react"
-import cookies from "universal-cookie"
+import { StreamChat } from "stream-chat"
+import { Chat } from "stream-chat-react"
+import Cookies from 'universal-cookie';
 import ChannelContainer from './Components/ChannelContainer'
 import ChannelListContainer from './Components/ChannelListContainer'
 import Auth from "./Components/Auth"
 import "./App.css"
-const apiKey = 'qhf9497y46m7'
 
-const client = StreamChat.getInstance(apiKey)
-const signup = false
-const App = () => {
-  if(signup === false) return <Auth />
+const cookies = new Cookies();
 
-  return (
-    <div className="app__wrapper">
-    <Chat client={client} theme="team light">
-        <ChannelListContainer />
-        <ChannelContainer />
-    </Chat>
-</div>
-  )
+const apiKey = 'qgtk9ttyha7j';
+const authToken = cookies.get("token");
+
+const client = StreamChat.getInstance(apiKey);
+
+if(authToken) {
+    client.connectUser({
+        id: cookies.get('userId'),
+        name: cookies.get('username'),
+        fullName: cookies.get('fullName'),
+        image: cookies.get('avatarURL'),
+        hashedPassword: cookies.get('hashedPassword'),
+        phoneNumber: cookies.get('phoneNumber'),
+    }, authToken)
 }
 
-export default App
+
+const App = () => {
+ 
+
+    if(!authToken) return <Auth />
+
+    return (
+        <div className="app__wrapper">
+            <Chat client={client} theme="team light">
+                <ChannelListContainer 
+               
+                />
+                <ChannelContainer 
+                 
+                />
+            </Chat>
+        </div>
+    );
+}
+
+export default App;
