@@ -13,7 +13,7 @@
   #root {
     height: 100%;
   }
-  
+
   .auth__form-container {
     min-height: 100vh;
     display: flex;
@@ -201,10 +201,12 @@
   .str-chat-channel-list {
     height: fit-content;
     margin-bottom: 8px;
+    
   }
   
   .str-chat-channel {
     height: 100%;
+    
   }
   
   .str-chat__load-more-button {
@@ -936,11 +938,13 @@
   
   .team-channel-list {
     width: 100%;
+    background-color: #3882ff;
     display: flex;
     flex-direction: column;
   }
   
   .team-channel-list__message {
+    
     color: #ffffff;
     padding: 0 16px;
   }
@@ -974,6 +978,8 @@
     display: flex;
     align-items: center;
   }
+
+  
   
   .channel-preview__wrapper__selected {
     height: auto;
